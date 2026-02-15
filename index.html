@@ -1,0 +1,915 @@
+<!-- =========================
+ Debt Consolidation Qualifier (dcq_)
+ Paste into page builder "Custom HTML" block
+========================= -->
+
+<div
+  id="dcq_widget"
+  class="dcq_widget"
+  data-offer-url="https://YOUR-OFFER-LINK-HERE.com"
+>
+  <div class="dcq_header">
+    <div class="dcq_title">Check Eligibility (2 minutes)</div>
+    <div class="dcq_sub">A brief phone call may be required.</div>
+  </div>
+
+  <div class="dcq_progress" aria-hidden="true">
+    <div class="dcq_bar" id="dcq_bar"></div>
+  </div>
+
+  <!-- Step 1 -->
+  <section class="dcq_step dcq_active" data-step="1">
+    <div class="dcq_q">
+      <div class="dcq_qtitle">
+        1) About how much unsecured debt do you have?
+      </div>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_debtAmount" value="lt5" />
+        <span><b>Less than $5,000</b></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_debtAmount" value="5to10" />
+        <span><b>$5,000 – $9,999</b></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_debtAmount" value="10to20" />
+        <span><b>$10,000 – $19,999</b></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_debtAmount" value="20plus" />
+        <span><b>$20,000+</b></span>
+      </label>
+    </div>
+
+    <div class="dcq_actions">
+      <button class="dcq_btn" id="dcq_next1" disabled>Next</button>
+    </div>
+  </section>
+
+  <!-- Step 2 -->
+  <section class="dcq_step" data-step="2">
+    <div class="dcq_q">
+      <div class="dcq_qtitle">
+        2) What type(s) of debt do you want help with?
+      </div>
+
+      <label class="dcq_opt">
+        <input type="checkbox" name="dcq_debtType" value="credit_cards" />
+        <span><b>Credit cards</b> <em>(unsecured)</em></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="checkbox" name="dcq_debtType" value="personal_loans" />
+        <span><b>Personal loans</b> <em>(usually unsecured)</em></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="checkbox" name="dcq_debtType" value="medical" />
+        <span><b>Medical bills</b> <em>(unsecured)</em></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="checkbox" name="dcq_debtType" value="collections" />
+        <span><b>Collections</b> <em>(often eligible)</em></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="checkbox" name="dcq_debtType" value="auto" />
+        <span><b>Auto loan</b> <em>(secured)</em></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="checkbox" name="dcq_debtType" value="mortgage" />
+        <span><b>Mortgage / home loan</b> <em>(secured)</em></span>
+      </label>
+    </div>
+
+    <div class="dcq_actions">
+      <button class="dcq_btn dcq_btn--ghost" id="dcq_back2">Back</button>
+      <button class="dcq_btn" id="dcq_next2" disabled>Next</button>
+    </div>
+  </section>
+
+  <!-- Step 3 -->
+  <section class="dcq_step" data-step="3">
+    <div class="dcq_q">
+      <div class="dcq_qtitle">3) Are monthly payments difficult right now?</div>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_hardship" value="yes" />
+        <span><b>Yes</b></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_hardship" value="no" />
+        <span><b>No</b></span>
+      </label>
+    </div>
+
+    <div class="dcq_q">
+      <div class="dcq_qtitle">4) Are you behind on payments?</div>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_behind" value="yes" />
+        <span><b>Yes</b></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_behind" value="no" />
+        <span><b>No</b></span>
+      </label>
+    </div>
+
+    <div class="dcq_actions">
+      <button class="dcq_btn dcq_btn--ghost" id="dcq_back3">Back</button>
+      <button class="dcq_btn" id="dcq_next3" disabled>Next</button>
+    </div>
+  </section>
+
+  <!-- Step 4 -->
+  <section class="dcq_step" data-step="4">
+    <div class="dcq_q">
+      <div class="dcq_qtitle">5) When are you looking to take action?</div>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_timeframe" value="today" />
+        <span><b>Today</b></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_timeframe" value="week" />
+        <span><b>This week</b></span>
+      </label>
+
+      <label class="dcq_opt">
+        <input type="radio" name="dcq_timeframe" value="later" />
+        <span><b>Later / just researching</b></span>
+      </label>
+    </div>
+
+    <div class="dcq_grid">
+      <div class="dcq_field">
+        <label class="dcq_label">Best time to call (today)</label>
+        <select id="dcq_bestTime">
+          <option value="">Select one</option>
+          <option value="morning">Morning (9am–12pm)</option>
+          <option value="afternoon">Afternoon (12pm–5pm)</option>
+          <option value="evening">Evening (5pm–8pm)</option>
+        </select>
+      </div>
+
+      <div class="dcq_field" style="display: none">
+        <label class="dcq_label">ZIP (optional)</label>
+        <input
+          id="dcq_zip"
+          type="text"
+          inputmode="numeric"
+          maxlength="10"
+          placeholder="e.g., 30303"
+        />
+      </div>
+    </div>
+
+    <div class="dcq_actions">
+      <button class="dcq_btn dcq_btn--ghost" id="dcq_back4">Back</button>
+      <button class="dcq_btn dcq_btn--ok" id="dcq_submit" disabled>
+        Continue
+      </button>
+    </div>
+
+    <div class="dcq_hint">
+      Tip: Answering a quick call today usually improves results.
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section class="dcq_step" data-step="5">
+    <div id="dcq_result" class="dcq_result"></div>
+    <div class="dcq_actions" id="dcq_resultActions"></div>
+    <div class="dcq_disclaimer">
+      By continuing, you agree to be contacted by phone/text/email about your
+      request. Message & data rates may apply.
+    </div>
+  </section>
+</div>
+
+<style>
+  /* ===== Scoped styles: dcq_ ===== */
+  #dcq_widget.dcq_widget {
+    max-width: 720px;
+    margin: 0 auto;
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      Segoe UI,
+      Roboto,
+      Arial,
+      "Noto Sans",
+      "Helvetica Neue",
+      sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+    padding: 18px;
+    background: #fff;
+    color: #111827;
+  }
+  #dcq_widget .dcq_header {
+    margin-bottom: 12px;
+  }
+  #dcq_widget .dcq_title {
+    font-size: 18px;
+    font-weight: 900;
+  }
+  #dcq_widget .dcq_sub {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+  }
+
+  #dcq_widget .dcq_progress {
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(17, 24, 39, 0.08);
+    overflow: hidden;
+    margin: 12px 0 14px;
+  }
+  #dcq_widget .dcq_bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2563eb, #22c55e);
+  }
+
+  #dcq_widget .dcq_step {
+    display: none;
+  }
+  #dcq_widget .dcq_step.dcq_active {
+    display: block;
+  }
+
+  #dcq_widget .dcq_q {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.02);
+  }
+  #dcq_widget .dcq_qtitle {
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  #dcq_widget .dcq_opt {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background: rgba(0, 0, 0, 0.02);
+    margin: 7px 0;
+  }
+  #dcq_widget .dcq_opt:hover {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  #dcq_widget .dcq_opt em {
+    font-style: normal;
+    color: #6b7280;
+    font-size: 12px;
+  }
+
+  #dcq_widget .dcq_actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  #dcq_widget .dcq_btn {
+    border: 0;
+    cursor: pointer;
+    padding: 11px 14px;
+    border-radius: 12px;
+    font-weight: 900;
+    background: #2563eb;
+    color: #fff;
+    min-width: 120px;
+  }
+  #dcq_widget .dcq_btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  #dcq_widget .dcq_btn--ghost {
+    background: transparent;
+    color: #111827;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+  }
+  #dcq_widget .dcq_btn--ok {
+    background: #16a34a;
+  }
+
+  #dcq_widget .dcq_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  @media (max-width: 640px) {
+    #dcq_widget .dcq_grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  #dcq_widget .dcq_label {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0 0 6px;
+  }
+  #dcq_widget select,
+  #dcq_widget input[type="text"] {
+    width: 100%;
+    padding: 11px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    outline: none;
+    background: #fff;
+  }
+
+  #dcq_widget .dcq_hint {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 10px;
+  }
+  #dcq_widget .dcq_result {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.02);
+  }
+  #dcq_widget .dcq_disclaimer {
+    margin-top: 12px;
+    font-size: 11px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+  #dcq_widget .dcq_tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  #dcq_widget .dcq_tag--ok {
+    background: rgba(34, 197, 94, 0.14);
+    color: #166534;
+  }
+  #dcq_widget .dcq_tag--no {
+    background: rgba(239, 68, 68, 0.14);
+    color: #991b1b;
+  }
+  #dcq_widget .dcq_list {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: #6b7280;
+    line-height: 1.45;
+  }
+</style>
+
+<script>
+  /* ===== Debt Consolidation Qualifier JS (dcq_) ===== */
+  (function () {
+    const root = document.getElementById("dcq_widget");
+    if (!root) return;
+
+    // ---------- CONFIG ----------
+    const DCQ = {
+      offerUrl:
+        root.getAttribute("data-offer-url") ||
+        "https://YOUR-OFFER-LINK-HERE.com",
+
+      // Primary quality gates (adjust to buyer)
+      minDebtLevel: "10to20", // pass only >=: "5to10" | "10to20" | "20plus"
+      requireUnsecuredType: true,
+      allowedUnsecuredTypes: ["credit_cards", "personal_loans"],
+      disallowSecuredOnly: true,
+
+      // Optional gates (toggle true if buyer needs them)
+      requireHardship: false,
+      requireBehind: false,
+
+      // Intent gate (exclude "later")
+      allowedTimeframes: ["today", "week"],
+
+      // If you want to skip the "result" step and redirect instantly on qualified
+      instantRedirectOnQualified: true,
+    };
+
+    // ---------- HELPERS ----------
+    const steps = Array.from(root.querySelectorAll(".dcq_step"));
+    const bar = document.getElementById("dcq_bar");
+
+    const $ = (sel) => root.querySelector(sel);
+    const $$ = (sel) => Array.from(root.querySelectorAll(sel));
+
+    function showStep(n) {
+      steps.forEach((s) =>
+        s.classList.toggle(
+          "dcq_active",
+          s.getAttribute("data-step") === String(n),
+        ),
+      );
+      const pct = Math.round(((n - 1) / 4) * 100);
+      if (bar) bar.style.width = Math.min(100, Math.max(0, pct)) + "%";
+    }
+
+    function getRadio(name) {
+      const el = root.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : "";
+    }
+    function getChecks(name) {
+      return $$(`input[name="${name}"]:checked`).map((x) => x.value);
+    }
+
+    function debtRank(v) {
+      const map = { lt5: 0, "5to10": 1, "10to20": 2, "20plus": 3 };
+      return map[v] ?? -1;
+    }
+    function meetsMinDebt(v) {
+      return debtRank(v) >= debtRank(DCQ.minDebtLevel);
+    }
+    function hasAllowedUnsecured(types) {
+      return types.some((t) => DCQ.allowedUnsecuredTypes.includes(t));
+    }
+    function isSecuredOnly(types) {
+      const secured = ["auto", "mortgage"];
+      const hasAny = types.length > 0;
+      const hasUnsec = types.some((t) => DCQ.allowedUnsecuredTypes.includes(t));
+      const hasSec = types.some((t) => secured.includes(t));
+      return hasAny && hasSec && !hasUnsec;
+    }
+    function esc(s) {
+      return String(s || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    // ---------- VALIDATION ----------
+    const next1 = $("#dcq_next1");
+    const next2 = $("#dcq_next2");
+    const next3 = $("#dcq_next3");
+    const submit = $("#dcq_submit");
+
+    function v1() {
+      next1.disabled = !getRadio("dcq_debtAmount");
+    }
+    function v2() {
+      next2.disabled = getChecks("dcq_debtType").length === 0;
+    }
+    function v3() {
+      next3.disabled = !(getRadio("dcq_hardship") && getRadio("dcq_behind"));
+    }
+    function v4() {
+      const tf = getRadio("dcq_timeframe");
+      const bt = $("#dcq_bestTime").value;
+      submit.disabled = !(tf && bt);
+    }
+
+    $$('input[name="dcq_debtAmount"]').forEach((x) =>
+      x.addEventListener("change", v1),
+    );
+    $$('input[name="dcq_debtType"]').forEach((x) =>
+      x.addEventListener("change", v2),
+    );
+    $$('input[name="dcq_hardship"], input[name="dcq_behind"]').forEach((x) =>
+      x.addEventListener("change", v3),
+    );
+    $$('input[name="dcq_timeframe"]').forEach((x) =>
+      x.addEventListener("change", v4),
+    );
+    $("#dcq_bestTime").addEventListener("change", v4);
+
+    $("#dcq_back2").addEventListener("click", () => showStep(1));
+    $("#dcq_back3").addEventListener("click", () => showStep(2));
+    $("#dcq_back4").addEventListener("click", () => showStep(3));
+
+    next1.addEventListener("click", () => showStep(2));
+    next2.addEventListener("click", () => showStep(3));
+    next3.addEventListener("click", () => showStep(4));
+
+    function qualify() {
+      const debtAmount = getRadio("dcq_debtAmount");
+      const types = getChecks("dcq_debtType");
+      const hardship = getRadio("dcq_hardship");
+      const behind = getRadio("dcq_behind");
+      const timeframe = getRadio("dcq_timeframe");
+      const bestTime = $("#dcq_bestTime").value;
+      const zip = ($("#dcq_zip").value || "").trim();
+
+      let reasons = [];
+
+      if (!meetsMinDebt(debtAmount))
+        reasons.push(
+          "Balance appears below the typical minimum (often $10,000+).",
+        );
+
+      if (DCQ.requireUnsecuredType && !hasAllowedUnsecured(types)) {
+        reasons.push(
+          "This option is mainly for unsecured debt (credit cards, personal loans).",
+        );
+      }
+      if (DCQ.disallowSecuredOnly && isSecuredOnly(types)) {
+        reasons.push(
+          "Secured-only debt (auto/mortgage) is usually not eligible for these programs.",
+        );
+      }
+
+      if (DCQ.requireHardship && hardship !== "yes")
+        reasons.push(
+          "This option is typically for people having difficulty keeping up with payments.",
+        );
+      if (DCQ.requireBehind && behind !== "yes")
+        reasons.push(
+          "This option typically requires being behind on payments.",
+        );
+
+      if (!DCQ.allowedTimeframes.includes(timeframe)) {
+        reasons.push(
+          "This option is prioritized for people ready to take action soon.",
+        );
+      }
+
+      const qualified = reasons.length === 0;
+
+      return {
+        qualified,
+        reasons,
+        data: { debtAmount, types, hardship, behind, timeframe, bestTime, zip },
+      };
+    }
+
+    function buildContinueUrl(data) {
+      const qp = new URLSearchParams({
+        debt_amount: data.debtAmount,
+        debt_types: data.types.join(","),
+        hardship: data.hardship,
+        behind: data.behind,
+        timeframe: data.timeframe,
+        best_time: data.bestTime,
+        zip: data.zip || "",
+      });
+
+      return (
+        DCQ.offerUrl + (DCQ.offerUrl.includes("?") ? "&" : "?") + qp.toString()
+      );
+    }
+
+    function renderResult(decision) {
+      const result = $("#dcq_result");
+      const actions = $("#dcq_resultActions");
+      actions.innerHTML = "";
+
+      if (decision.qualified) {
+        result.innerHTML = `
+        <div class="dcq_tag dcq_tag--ok">LIKELY ELIGIBLE ✅</div>
+        <div style="font-weight:900; margin-bottom:6px;">You may qualify for a structured plan</div>
+        <div style="color:#6b7280; font-size:13px;">
+          Next step: confirm details. A brief call may be required.
+        </div>
+      `;
+
+        const btn = document.createElement("button");
+        btn.className = "dcq_btn dcq_btn--ok";
+        btn.textContent = "Continue";
+        btn.onclick = () =>
+          (window.location.href = buildContinueUrl(decision.data));
+        actions.appendChild(btn);
+
+        const edit = document.createElement("button");
+        edit.className = "dcq_btn dcq_btn--ghost";
+        edit.textContent = "Edit Answers";
+        edit.onclick = () => showStep(1);
+        actions.appendChild(edit);
+      } else {
+        result.innerHTML = `
+        <div class="dcq_tag dcq_tag--no">NOT A GREAT MATCH ❌</div>
+        <div style="font-weight:900; margin-bottom:6px;">This option may not fit your situation</div>
+        <div style="color:#6b7280; font-size:13px;">Based on your answers:</div>
+        <ul class="dcq_list">
+          ${decision.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}
+        </ul>
+      `;
+
+        const edit = document.createElement("button");
+        edit.className = "dcq_btn dcq_btn--ghost";
+        edit.textContent = "Edit Answers";
+        edit.onclick = () => showStep(1);
+        actions.appendChild(edit);
+      }
+    }
+
+    submit.addEventListener("click", () => {
+      const decision = qualify();
+
+      if (decision.qualified && DCQ.instantRedirectOnQualified) {
+        window.location.href = buildContinueUrl(decision.data);
+        return;
+      }
+
+      renderResult(decision);
+      showStep(5);
+    });
+
+    // init
+    v1();
+    v2();
+    v3();
+    v4();
+  })();
+</script>
+<!-- =========================
+ DCQ Trust + Testimonials Section (dcq_)
+ Paste into page builder
+========================= -->
+
+<section id="dcq_trust" class="dcq_trust">
+  <div class="dcq_trustInner">
+    <div class="dcq_trustHead">
+      <h2 class="dcq_trustTitle">
+        Trusted by people looking for real payment relief
+      </h2>
+      <p class="dcq_trustSub">
+        Results vary by situation. A brief phone call may be required to confirm
+        eligibility.
+      </p>
+    </div>
+
+    <!-- Trust / Review Logos -->
+    <div class="dcq_logoRow" aria-label="Review platforms">
+      <div class="dcq_logoPill" title="Better Business Bureau">
+        <img
+          src="https://convertri.imgix.net/601846e2-b2c3-11f0-a585-06d664cfaed9%2Fa8e7b9cfe23227e7095856a62997ae2a06860d48%2Fbbb-logo.png?auto=compress,format&dpr=2&fit=scale&w=356&h=142"
+          alt="Better Business Bureau Logo"
+          width="150"
+          height="60"
+        />
+      </div>
+      <div class="dcq_logoPill" title="Google Reviews">
+        <img
+          src="https://convertri.imgix.net/601846e2-b2c3-11f0-a585-06d664cfaed9%2F7edd4a0d8168f51679211f5f0a7abb9e6255e403%2FGoogle-Review-Logo.png?auto=compress,format&dpr=2&fit=scale&w=356&h=200"
+          alt="Google Reviews Logo"
+          width="100"
+          height="60"
+        />
+      </div>
+      <div class="dcq_logoPill" title="Trustpilot">
+        <img
+          src="https://convertri.imgix.net/601846e2-b2c3-11f0-a585-06d664cfaed9%2Feba8cb05f1ad26bc5e41a35dc5b0d364f54297a0%2Ftrust-pilot-stacked-black.svg"
+          alt="Trustpilot Logo"
+          width="100"
+          height="60"
+        />
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="dcq_cards">
+      <article class="dcq_card">
+        <div class="dcq_stars" aria-label="5 stars">★★★★★</div>
+        <p class="dcq_quote">
+          “I was juggling 4 cards and the minimums kept rising. The specialist
+          explained my options clearly and helped me find a plan that actually
+          fit my budget.”
+        </p>
+        <div class="dcq_meta">
+          <span class="dcq_name">— Amanda R.</span>
+          <span class="dcq_tag">Credit Cards</span>
+        </div>
+      </article>
+
+      <article class="dcq_card">
+        <div class="dcq_stars" aria-label="5 stars">★★★★★</div>
+        <p class="dcq_quote">
+          “I thought it would be complicated, but the process was
+          straightforward. The call took less than 15 minutes and I finally felt
+          like I had a direction.”
+        </p>
+        <div class="dcq_meta">
+          <span class="dcq_name">— Michael T.</span>
+          <span class="dcq_tag">Personal Loan</span>
+        </div>
+      </article>
+
+      <article class="dcq_card">
+        <div class="dcq_stars" aria-label="4 stars">★★★★☆</div>
+        <p class="dcq_quote">
+          “No pressure. Just clear answers. They told me what I qualified for
+          and what I didn’t. That honesty made me comfortable moving forward.”
+        </p>
+        <div class="dcq_meta">
+          <span class="dcq_name">— Jasmine L.</span>
+          <span class="dcq_tag">Multiple Debts</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Mini CTA -->
+    <div class="dcq_trustCTA">
+      <div class="dcq_trustCTAText">
+        <div class="dcq_trustCTATitle">Ready to check your options?</div>
+        <div class="dcq_trustCTASub">
+          Takes about 2 minutes. Best for $10k+ in credit card / personal loan
+          debt.
+        </div>
+      </div>
+      <a href="#dcq_widget" class="dcq_trustBtn">Check Eligibility</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== Scoped styles: dcq_ ===== */
+  #dcq_trust.dcq_trust {
+    margin: 18px auto;
+    max-width: 900px;
+    padding: 18px;
+  }
+  #dcq_trust .dcq_trustInner {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 18px;
+    background: #fff;
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      Segoe UI,
+      Roboto,
+      Arial,
+      "Noto Sans",
+      "Helvetica Neue",
+      sans-serif;
+    color: #111827;
+  }
+  #dcq_trust .dcq_trustHead {
+    margin-bottom: 12px;
+  }
+  #dcq_trust .dcq_trustTitle {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.2px;
+  }
+  #dcq_trust .dcq_trustSub {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.45;
+  }
+
+  /* Logos */
+  #dcq_trust .dcq_logoRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 16px;
+  }
+  #dcq_trust .dcq_logoPill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+    user-select: none;
+  }
+  #dcq_trust .dcq_logoIcon {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+  }
+  #dcq_trust .dcq_logoText {
+    font-size: 13px;
+    font-weight: 800;
+    color: #111827;
+  }
+
+  /* Cards */
+  #dcq_trust .dcq_cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 860px) {
+    #dcq_trust .dcq_cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  #dcq_trust .dcq_card {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 14px;
+    background: rgba(0, 0, 0, 0.02);
+  }
+  #dcq_trust .dcq_stars {
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 13px;
+    color: #f59e0b;
+    margin-bottom: 8px;
+  }
+  #dcq_trust .dcq_quote {
+    margin: 0;
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.55;
+  }
+  #dcq_trust .dcq_meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap: 10px;
+  }
+  #dcq_trust .dcq_name {
+    font-size: 12px;
+    font-weight: 900;
+    color: #111827;
+  }
+  #dcq_trust .dcq_tag {
+    font-size: 11px;
+    font-weight: 900;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.08);
+    white-space: nowrap;
+  }
+
+  /* CTA */
+  #dcq_trust .dcq_trustCTA {
+    margin-top: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: linear-gradient(
+      180deg,
+      rgba(37, 99, 235, 0.06),
+      rgba(34, 197, 94, 0.05)
+    );
+  }
+  @media (max-width: 640px) {
+    #dcq_trust .dcq_trustCTA {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  #dcq_trust .dcq_trustCTATitle {
+    font-weight: 900;
+    margin-bottom: 2px;
+  }
+  #dcq_trust .dcq_trustCTASub {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+  #dcq_trust .dcq_trustBtn {
+    display: inline-block;
+    text-align: center;
+    padding: 11px 14px;
+    border-radius: 12px;
+    font-weight: 900;
+    background: #16a34a;
+    color: #fff;
+    text-decoration: none;
+    min-width: 160px;
+  }
+  #dcq_trust .dcq_trustBtn:hover {
+    filter: brightness(0.98);
+  }
+
+  #dcq_trust .dcq_trustFine {
+    margin-top: 12px;
+    font-size: 11px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+</style>
