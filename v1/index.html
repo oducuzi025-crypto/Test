@@ -114,23 +114,48 @@
         text-shadow: 0 0 20px #ff0000;
       }
     </style>
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "906365802260743");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=906365802260743&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
   </head>
   <body>
     <header>
-      <div class="logo">آخر فضايح الممثلين 🔞🍆🍒</div>
+      <div class="logo">آخر فضايح المشاهر 🔞🍆🍒</div>
       <p>ممنوع تحت 18</p>
     </header>
-
-    <!-- <div class="categories">
-      <div class="cat">نيك محجبات</div>
-      <div class="cat">طيز كبيرة</div>
-      <div class="cat">بزاز عربية</div>
-      <div class="cat">كس مبلول</div>
-      <div class="cat">نيك خلفي</div>
-      <div class="cat">شراميط لبنان</div>
-      <div class="cat">زب كبير</div>
-      <div class="cat">مص زب</div>
-    </div> -->
 
     <div class="grid">
       <div class="thumb">
@@ -222,5 +247,28 @@
     </div>
 
     <footer></footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const telegramUrl = "https://t.me/+3JSzjLri_kI3NDNh"; // 🔥 replace with your link
+
+        const thumbs = document.querySelectorAll(".thumb");
+
+        thumbs.forEach(function (element) {
+          element.addEventListener("click", function (e) {
+            e.preventDefault(); // prevents accidental default link behavior
+
+            if (typeof fbq !== "undefined") {
+              fbq("track", "Lead");
+              fbq("trackCustom", "TelegramJoin"); // optional but recommended
+            }
+
+            // Small delay so pixel fires before redirect
+            setTimeout(function () {
+              window.location.href = telegramUrl;
+            }, 300);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
